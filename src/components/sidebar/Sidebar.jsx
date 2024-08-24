@@ -1,7 +1,8 @@
 import React from "react";
 import styles from "./Sidebar.module.css";
 import { notes } from "../../data";
-import { generateInitials, limitCharLength } from "../../utils";
+import { limitCharLength } from "../../utils";
+import Avatar from "../avatar/Avatar";
 const Sidebar = () => {
   return (
     <div className={`${styles.container}`}>
@@ -12,12 +13,7 @@ const Sidebar = () => {
       <div className={`${styles.notesListBox}`}>
         {notes.map((note) => (
           <div className={`${styles.note}`} key={note.id}>
-            <div
-              style={{ backgroundColor: note.color }}
-              className={`${styles.avatar}`}
-            >
-              <span>{generateInitials(note.title)}</span>
-            </div>
+            <Avatar color={note.color} title={note.title} />
             <p className={`${styles.noteTitle}`}>
               {limitCharLength(note.title)}
             </p>

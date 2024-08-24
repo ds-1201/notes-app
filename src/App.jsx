@@ -1,4 +1,5 @@
-import Home from "./components/home/Home";
+// import Home from "./components/home/Home";
+import NotesView from "./components/notesView/NotesView";
 import Sidebar from "./components/sidebar/Sidebar";
 
 function App() {
@@ -8,7 +9,8 @@ function App() {
         <Sidebar />
       </div>
       <div className="main-box">
-        <Home />
+        {/* <Home /> */}
+        <NotesView />
       </div>
     </div>
   );
