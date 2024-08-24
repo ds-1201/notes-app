@@ -1,7 +1,15 @@
+import Home from "./components/home/Home";
+import Sidebar from "./components/sidebar/Sidebar";
+
 function App() {
   return (
-    <div>
-      <h1>Dhruv Shah Notes APP</h1>
+    <div className="App">
+      <div className="sidebar-box">
+        <Sidebar />
+      </div>
+      <div className="main-box">
+        <Home />
+      </div>
     </div>
   );
 }

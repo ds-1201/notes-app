@@ -15,11 +15,14 @@
   --notes-color-6: #6691ff;
 
   --input-color: #9a9a9a;
+  --scroll-bar-color: #d9d9d9;
   --black-color: #000000;
+  --text-color-2: #292929;
   --white-color: #ffffff;
-  --home-back-color: #001f8b;
+  --home-back-color: #dae5f5;
+  --home-front-color: #001f8b;
   --add-btn-color: #16008b;
-  --note-select-color: #2f2f2f;
+  --note-select-color: #2f2f2f2b;
   --send-btn-color: #ababab;
   --create-note-select-color: #20b2aa;
 }
@@ -30,4 +33,23 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.App {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+}
+
+.sidebar-box {
+  width: 100%;
+  height: 100vh;
+  flex: 0.25;
+}
+
+.main-box {
+  width: 100%;
+  height: 100vh;
+  background-color: var(--home-back-color);
+  flex: 0.75;
 }

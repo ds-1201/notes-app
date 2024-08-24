@@ -1,0 +1,42 @@
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.mainBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(-25%);
+}
+
+.img {
+  width: 450px;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.description {
+  font-weight: 500;
+  font-size: 1rem;
+  color: var(--text-color-2);
+  line-height: 1.5;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 1.2rem;
+  color: var(--text-color-2);
+}
