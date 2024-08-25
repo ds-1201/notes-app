@@ -1,58 +1,32 @@
 import React from "react";
 import styles from "./NotesView.module.css";
+
+// component
 import Avatar from "../avatar/Avatar";
 
-const dummy = {
-  id: 1,
-  title: "Note 1",
-  content: [
-    {
-      id: 1,
-      note: "Another productive way to use this tool to begin a daily writing routine. One way is to generate a random paragraph with the intention to try to rewrite it while still keeping the original meaning. The purpose here is to just get the writing started so that when the writer goes onto their day's writing projects, words are already flowing from their fingers.",
-      date: "9 Mar 2023",
-      time: "5:50 AM",
-    },
-    {
-      id: 2,
-      note: "Another productive way to use this tool to begin a daily writing routine. One way is to generate a random paragraph with the intention to try to rewrite it while still keeping the original meaning. The purpose here is to just get the writing started so that when the writer goes onto their day's writing projects, words are already flowing from their fingers.",
-      date: "9 Mar 2023",
-      time: "5:50 AM",
-    },
-    {
-      id: 3,
-      note: "Another productive way to use this tool to begin a daily writing routine. One way is to generate a random paragraph with the intention to try to rewrite it while still keeping the original meaning. The purpose here is to just get the writing started so that when the writer goes onto their day's writing projects, words are already flowing from their fingers.",
-      date: "9 Mar 2023",
-      time: "5:50 AM",
-    },
-    {
-      id: 4,
-      note: "Another productive way to use this tool to begin a daily writing routine. One way is to generate a random paragraph with the intention to try to rewrite it while still keeping the original meaning. The purpose here is to just get the writing started so that when the writer goes onto their day's writing projects, words are already flowing from their fingers.",
-      date: "9 Mar 2023",
-      time: "5:50 AM",
-    },
-  ],
-  color: "#b38bfa",
-};
+// context
+import { useNotes } from "../../context/notesContext/NotesContext";
 
 const NotesView = () => {
+  const { notes, selectedGroup } = useNotes();
   return (
     <>
       <div className={`${styles.container}`}>
         <header className={`${styles.noteHeader}`}>
           <Avatar
-            color={dummy.color}
-            title={dummy.title}
+            color={selectedGroup.color}
+            title={selectedGroup.title}
             width={"3.5rem"}
             height={"3.5rem"}
             fontSize={"1.5rem"}
           />
-          <h1 className={`${styles.noteTitle}`}>{dummy.title}</h1>
+          <h1 className={`${styles.noteTitle}`}>{selectedGroup.title}</h1>
         </header>
 
         <div className={`${styles.noteContent}`}>
-          {dummy.content.map((note) => (
+          {notes?.map((note) => (
             <div className={`${styles.note}`} key={note.id}>
-              <p className={`${styles.content}`}>{note.note}</p>
+              <p className={`${styles.content}`}>{note.content}</p>
               <div className={`${styles.dateBox}`}>
                 <span className={`${styles.dateTime}`}>
                   <span>{note.date}</span>{" "}

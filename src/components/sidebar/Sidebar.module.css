@@ -15,37 +15,48 @@
   font-weight: 500;
   font-size: 2rem;
   transform: translateX(-25%);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
 }
 
-.notesListBox {
+.title:hover {
+  color: var(--home-front-color);
+}
+
+.groupsListBox {
   display: flex;
   flex-direction: column;
   height: 85%;
   overflow-y: auto;
 }
 
-.notesListBox::-webkit-scrollbar {
+.groupsListBox::-webkit-scrollbar {
   width: 0.8rem;
 }
 
-.notesListBox::-webkit-scrollbar-track {
+.groupsListBox::-webkit-scrollbar-track {
   background-color: var(--scroll-bar-color);
 }
 
-.notesListBox::-webkit-scrollbar-thumb {
+.groupsListBox::-webkit-scrollbar-thumb {
   background-color: var(--white-color);
   border-radius: 0.5rem;
   border: 0.2rem solid var(--scroll-bar-color);
 }
 
-.note {
+.group {
   display: flex;
   align-items: center;
   padding: 0.8rem 2rem;
   cursor: pointer;
 }
 
-.note:hover {
+.group:hover {
+  background-color: var(--note-select-color);
+  border-radius: 0.5rem;
+}
+
+.selected {
   background-color: var(--note-select-color);
   border-radius: 0.5rem;
 }
@@ -61,7 +72,7 @@
   border-radius: 50%;
 }
 
-.noteTitle {
+.groupTitle {
   font-weight: 500;
   font-size: 1.2rem;
   margin-left: 1rem;

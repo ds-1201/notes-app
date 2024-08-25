@@ -1,27 +1,64 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./Sidebar.module.css";
-import { notes } from "../../data";
+
+// utils
 import { limitCharLength } from "../../utils";
+
+// components
 import Avatar from "../avatar/Avatar";
+
+// context api
+import { useNotes } from "./../../context/notesContext/NotesContext";
+import { useUI } from "./../../context/uiContext/UIContext";
+
 const Sidebar = () => {
+  const { groups, selectedGroup, handleSelectGroup } = useNotes();
+  const { dispatch: uiDispatch } = useUI();
+
+  useEffect(() => {
+    if (selectedGroup) {
+      const groupElement = document.querySelector(
+        `[data-group-id="${selectedGroup.id}"]`
+      );
+      if (groupElement) {
+        groupElement.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [selectedGroup]);
+
   return (
     <div className={`${styles.container}`}>
       <div className={`${styles.titleBox}`}>
-        <h1 className={`${styles.title}`}>Pocket Notes</h1>
+        <h1
+          onClick={() => handleSelectGroup(null)}
+          className={`${styles.title}`}
+        >
+          Pocket Notes
+        </h1>
       </div>
 
-      <div className={`${styles.notesListBox}`}>
-        {notes.map((note) => (
-          <div className={`${styles.note}`} key={note.id}>
-            <Avatar color={note.color} title={note.title} />
-            <p className={`${styles.noteTitle}`}>
-              {limitCharLength(note.title)}
+      <div className={`${styles.groupsListBox}`}>
+        {groups?.map((group) => (
+          <div
+            className={`${styles.group} ${
+              selectedGroup && selectedGroup.id === group.id && styles.selected
+            }`}
+            key={group.id}
+            data-group-id={group.id}
+            onClick={() => handleSelectGroup(group)}
+          >
+            <Avatar color={group.color} title={group.title} />
+            <p className={`${styles.groupTitle}`}>
+              {limitCharLength(group.title)}
             </p>
           </div>
         ))}
       </div>
 
-      <button className={`${styles.createBtn}`}>
+      <button
+        onClick={() => uiDispatch({ type: "OPEN_MODAL" })}
+        className={`${styles.createBtn}`}
+      >
         <svg
           width="30"
           height="37"

@@ -1,0 +1,99 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 999;
+  /* display: none; */
+}
+
+.formBox {
+  width: 30rem;
+  background-color: var(--white-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 1rem;
+}
+
+.formBox form {
+  width: 100%;
+}
+
+.title {
+  font-weight: 500;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  letter-spacing: 1.5px;
+}
+
+.formControl {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  display: grid;
+  grid-template-columns: 0.35fr 1fr;
+  gap: 0.5rem;
+  margin-bottom: 1.2rem;
+}
+
+.formControl label {
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.input {
+  height: 2rem;
+  padding: 0.5rem;
+  border: 1px solid var(--input-color);
+  outline: none;
+  border-radius: 2rem;
+}
+
+.colorSelector {
+  display: flex;
+  gap: 0.7rem;
+}
+
+.color {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.color:hover {
+  transform: scale(1.1);
+}
+
+.selected {
+  border: 3px solid var(--create-note-select-color);
+}
+
+.createBtn {
+  width: 7rem;
+  height: 2rem;
+  font-size: 0.8rem;
+  background-color: var(--add-btn-color);
+  color: var(--white-color);
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  letter-spacing: 1.5px;
+  transition: all 0.2s ease-in-out;
+  float: inline-end;
+}
+
+.createBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: var(--disabled-btn-color);
+}

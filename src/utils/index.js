@@ -1,4 +1,4 @@
-export const generateRandomNumber = (size = 10) => {
+export const generateID = (size = 10) => {
   return Math.floor(
     Math.pow(10, size - 1) + Math.random() * Math.pow(10, size - 1)
   );
