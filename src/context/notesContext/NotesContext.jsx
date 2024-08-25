@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { SAMPLE_GROUPS } from "../../data";
-import { generateID } from "../../utils";
+import { generateID, getDateAndTime } from "../../utils";
 
 const initialState = {
   groups: [],
@@ -50,9 +50,11 @@ export const NotesProvider = ({ children }) => {
   };
 
   const handleGetNotes = (group) => {
-    const data = JSON.parse(localStorage.getItem(group.id));
+    const data = JSON.parse(localStorage.getItem(group.id)) || [];
     if (data) {
       setNotes(data);
+    } else {
+      setNotes([]);
     }
   };
 
@@ -69,9 +71,12 @@ export const NotesProvider = ({ children }) => {
     localStorage.setItem("groups", JSON.stringify([...groups, data]));
   };
 
-  const handleAddNote = (note) => {
+  const handleAddNote = (content) => {
+    const { date, time } = getDateAndTime();
     const data = {
-      ...note,
+      content,
+      date,
+      time,
       id: generateID(),
     };
     setNotes((prev) => {
@@ -79,6 +84,8 @@ export const NotesProvider = ({ children }) => {
       localStorage.setItem(selectedGroup.id, JSON.stringify([...prev, data]));
       return [...prev, data];
     });
+
+    return data.id;
   };
 
   return (

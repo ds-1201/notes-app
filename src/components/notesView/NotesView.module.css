@@ -150,6 +150,22 @@
   transition: all 0.2s ease-in-out;
 }
 
-.addIcon:hover:enabled {
+.addIcon path {
+  fill: var(--home-front-color);
+}
+
+.addIcon:hover {
   transform: scale(1.2);
+}
+
+.disabled {
+  cursor: not-allowed;
+}
+
+.disabled:hover {
+  transform: none;
+}
+
+.disabled path {
+  fill: var(--disabled-btn-color);
 }

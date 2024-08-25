@@ -17,3 +17,21 @@ export const generateInitials = (title) => {
 export const limitCharLength = (title, size = 25) => {
   return title?.length > size ? title.slice(0, size) + "..." : title;
 };
+
+export const getDateAndTime = () => {
+  const time = new Date().toLocaleString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true,
+  });
+  let date = new Date().toLocaleString("en-US", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
+
+  const [month, day, year] = date.split("/");
+  date = `${day}-${month}-${year}`;
+
+  return { date, time };
+};
