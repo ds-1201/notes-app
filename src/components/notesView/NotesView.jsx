@@ -21,7 +21,7 @@ const NotesView = () => {
 
   // useEffect
   useEffect(() => {
-    if (noteContentRef.current) {
+    if (noteContentRef.current && notes.length > 0) {
       const lastNote =
         noteContentRef.current.children[
           noteContentRef.current.children.length - 1
@@ -38,9 +38,8 @@ const NotesView = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form Submitted", disabled);
     let text = content.trim();
-    if (text !== "") {
+    if (text !== "" && !disabled) {
       handleAddNote(text);
       setContent("");
       inputRef.current.focus();
@@ -93,6 +92,15 @@ const NotesView = () => {
               value={content}
               onChange={handleChange}
               placeholder="Enter your text here..........."
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && e.shiftKey) {
+                  e.preventDefault();
+                  const currentValue = e.target.value;
+                  e.target.value = currentValue + "\n";
+                } else if (e.key === "Enter" && !e.shiftKey) {
+                  handleSubmit(e);
+                }
+              }}
             ></textarea>
 
             <svg

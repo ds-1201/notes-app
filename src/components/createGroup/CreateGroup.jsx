@@ -33,7 +33,6 @@ const CreateGroup = () => {
   const [disabled, setDisabled] = useState(true);
 
   // ref
-  const SubmitBtnRef = useRef(null);
   const inputRef = useRef(null);
 
   const { handleCreateGroup } = useNotes();
@@ -47,9 +46,24 @@ const CreateGroup = () => {
 
   useEffect(() => {
     if (isModalOpen) {
-      inputRef.current.focus();
+      if (inputRef.current) {
+        inputRef.current.focus();
+      }
     }
   }, [isModalOpen]);
+
+  useEffect(() => {
+    const handleEnter = (e) => {
+      if (!disabled && e.key === "Enter") {
+        handleSubmit(e);
+      }
+    };
+    document.addEventListener("keypress", handleEnter);
+    return () => {
+      document.removeEventListener("keypress", handleEnter);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [disabled]);
 
   const handleChange = (e) => {
     setName(e.target.value);
@@ -60,11 +74,13 @@ const CreateGroup = () => {
         setSelectedColor({});
       } else setSelectedColor(color);
     } else setSelectedColor(color);
-    SubmitBtnRef.current.focus();
   };
   const handleSubmit = (e) => {
     e.preventDefault();
     handleCreateGroup(name, selectedColor.color);
+    setName("");
+    setSelectedColor({});
+    setDisabled(true);
     uiDispatch({ type: "CLOSE_MODAL" });
   };
   return (
@@ -86,7 +102,6 @@ const CreateGroup = () => {
               placeholder="Enter group name"
               ref={inputRef}
               onChange={handleChange}
-              onBlur={() => SubmitBtnRef.current.focus()}
               value={name}
             />
           </div>
@@ -108,7 +123,6 @@ const CreateGroup = () => {
             </div>
           </div>
           <button
-            ref={SubmitBtnRef}
             type="submit"
             className={`${styles.createBtn}`}
             disabled={disabled}

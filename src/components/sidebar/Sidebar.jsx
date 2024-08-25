@@ -16,12 +16,18 @@ const Sidebar = () => {
   const { dispatch: uiDispatch } = useUI();
 
   useEffect(() => {
-    if (selectedGroup) {
+    console.log(selectedGroup);
+    if (selectedGroup !== null) {
+      console.log(
+        "Scrolling Expected",
+        new Date().toLocaleDateString(),
+        selectedGroup
+      );
       const groupElement = document.querySelector(
         `[data-group-id="${selectedGroup.id}"]`
       );
       if (groupElement) {
-        groupElement.scrollIntoView({ behavior: "smooth" });
+        groupElement.scrollIntoView({ top: 0, behavior: "smooth" });
       }
     }
   }, [selectedGroup]);
