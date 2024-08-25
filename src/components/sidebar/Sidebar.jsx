@@ -16,18 +16,19 @@ const Sidebar = () => {
   const { dispatch: uiDispatch } = useUI();
 
   useEffect(() => {
-    console.log(selectedGroup);
     if (selectedGroup !== null) {
-      console.log(
-        "Scrolling Expected",
-        new Date().toLocaleDateString(),
-        selectedGroup
-      );
       const groupElement = document.querySelector(
         `[data-group-id="${selectedGroup.id}"]`
       );
       if (groupElement) {
-        groupElement.scrollIntoView({ top: 0, behavior: "smooth" });
+        setTimeout(
+          () =>
+            groupElement.scrollIntoView({
+              inline: "center",
+              behavior: "smooth",
+            }),
+          250
+        );
       }
     }
   }, [selectedGroup]);
@@ -51,6 +52,7 @@ const Sidebar = () => {
             }`}
             key={group.id}
             data-group-id={group.id}
+            // id={group.id}
             onClick={() => handleSelectGroup(group)}
           >
             <Avatar color={group.color} title={group.title} />

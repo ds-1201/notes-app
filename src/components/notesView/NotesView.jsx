@@ -26,7 +26,14 @@ const NotesView = () => {
         noteContentRef.current.children[
           noteContentRef.current.children.length - 1
         ];
-      lastNote?.scrollIntoView({ behavior: "smooth" });
+      setTimeout(
+        () =>
+          lastNote?.scrollIntoView({
+            inline: "center",
+            behavior: "smooth",
+          }),
+        250
+      );
     }
   }, [notes]);
 
