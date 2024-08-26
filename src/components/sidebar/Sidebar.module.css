@@ -99,7 +99,7 @@
   transform: scale(1.2);
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1030px) {
   .title {
     transform: none;
   }

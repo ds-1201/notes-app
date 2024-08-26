@@ -10,7 +10,7 @@
   justify-content: flex-start;
   align-items: center;
   height: 10%;
-  padding: 0.5rem 2rem;
+  padding: 1rem 2rem;
   background-color: var(--home-front-color);
   color: var(--white-color);
 }
@@ -173,14 +173,14 @@
 
 @media (max-width: 768px) {
   .noteHeader {
-    height: 10%;
+    height: 12vh;
   }
 
   .noteContent {
-    height: 70%;
+    height: 68vh;
   }
 
   .addContent {
-    height: 21%;
+    height: 20vh;
   }
 }

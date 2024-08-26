@@ -97,3 +97,13 @@
   cursor: not-allowed;
   background-color: var(--disabled-btn-color);
 }
+
+@media (max-width: 426px) {
+  .formBox {
+    width: 25rem;
+  }
+
+  .formControl label {
+    font-size: 0.8rem;
+  }
+}

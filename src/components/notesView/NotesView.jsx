@@ -7,6 +7,7 @@ import Avatar from "../avatar/Avatar";
 // context
 import { useNotes } from "../../context/notesContext/NotesContext";
 import { useUI } from "../../context/uiContext/UIContext";
+import { limitCharLength } from "../../utils";
 
 const NotesView = () => {
   // states
@@ -89,7 +90,13 @@ const NotesView = () => {
             height={"3.5rem"}
             fontSize={"1.5rem"}
           />
-          <h1 className={`${styles.noteTitle}`}>{selectedGroup.title}</h1>
+          <h1 style={{}} className={`${styles.noteTitle}`}>
+            {!isMobile
+              ? selectedGroup.title
+              : selectedGroup?.title?.length > 20
+              ? limitCharLength(selectedGroup.title, 20)
+              : selectedGroup.title}
+          </h1>
         </header>
 
         <div className={`${styles.noteContent}`} ref={noteContentRef}>

@@ -21,10 +21,7 @@ const Sidebar = () => {
         `[data-group-id="${selectedGroup.id}"]`
       );
       if (groupElement) {
-        groupElement.scrollIntoView({
-          inline: "center",
-          behavior: "smooth",
-        });
+        groupElement.scrollIntoView();
       }
     }
   }, [selectedGroup]);
