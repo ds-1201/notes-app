@@ -50,8 +50,9 @@ const NotesView = () => {
     e.preventDefault();
     let text = content.trim();
     if (text !== "" && !disabled) {
-      handleAddNote(text);
       setContent("");
+      setDisabled(true);
+      handleAddNote(text);
       inputRef.current.focus();
     } else {
       alert("Please enter some text");
