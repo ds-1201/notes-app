@@ -60,6 +60,7 @@
   line-height: 1.5;
   margin: 1rem 0;
   margin-bottom: 2rem;
+  white-space: pre-wrap;
 }
 
 .dateBox {
@@ -168,4 +169,18 @@
 
 .disabled path {
   fill: var(--disabled-btn-color);
+}
+
+@media (max-width: 768px) {
+  .noteHeader {
+    height: 10%;
+  }
+
+  .noteContent {
+    height: 70%;
+  }
+
+  .addContent {
+    height: 21%;
+  }
 }

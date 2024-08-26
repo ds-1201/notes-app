@@ -21,14 +21,10 @@ const Sidebar = () => {
         `[data-group-id="${selectedGroup.id}"]`
       );
       if (groupElement) {
-        setTimeout(
-          () =>
-            groupElement.scrollIntoView({
-              inline: "center",
-              behavior: "smooth",
-            }),
-          250
-        );
+        groupElement.scrollIntoView({
+          inline: "center",
+          behavior: "smooth",
+        });
       }
     }
   }, [selectedGroup]);

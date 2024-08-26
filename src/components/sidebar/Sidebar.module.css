@@ -98,3 +98,19 @@
 .createBtn:hover {
   transform: scale(1.2);
 }
+
+@media (max-width: 1024px) {
+  .title {
+    transform: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .titleBox {
+    height: 10%;
+  }
+
+  .groupsListBox {
+    height: 90%;
+  }
+}

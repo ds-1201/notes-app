@@ -14,7 +14,7 @@ export const generateInitials = (title) => {
     .slice(0, 2);
 };
 
-export const limitCharLength = (title, size = 25) => {
+export const limitCharLength = (title, size = 20) => {
   return title?.length > size ? title.slice(0, size) + "..." : title;
 };
 

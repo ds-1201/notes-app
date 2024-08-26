@@ -3,6 +3,8 @@ import { createContext, useContext, useReducer, useEffect } from "react";
 const initialState = {
   isSidebarOpen: false,
   isModalOpen: false,
+  isMobile: false,
+  isSmallDesktop: false,
 };
 
 const UIContext = createContext(initialState);
@@ -34,6 +36,11 @@ export const UIProvider = ({ children }) => {
           ...state,
           isModalOpen: false,
         };
+      case "SET_IS_MOBILE":
+        return {
+          ...state,
+          isMobile: action.payload,
+        };
       default:
         return state;
     }
@@ -43,6 +50,15 @@ export const UIProvider = ({ children }) => {
     localStorage.setItem("isSidebarOpen", state.isSidebarOpen);
     localStorage.setItem("isModalOpen", state.isModalOpen);
   }, [state.isSidebarOpen, state.isModalOpen]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      dispatch({ type: "SET_IS_MOBILE", payload: window.innerWidth <= 768 });
+    };
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <UIContext.Provider

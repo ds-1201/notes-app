@@ -34,6 +34,7 @@ const CreateGroup = () => {
 
   // ref
   const inputRef = useRef(null);
+  const formBoxRef = useRef(null);
 
   const { handleCreateGroup } = useNotes();
   const { dispatch: uiDispatch, isModalOpen } = useUI();
@@ -51,6 +52,19 @@ const CreateGroup = () => {
       }
     }
   }, [isModalOpen]);
+
+  useEffect(() => {
+    const handleOutsideClick = (e) => {
+      if (formBoxRef.current && !formBoxRef.current.contains(e.target)) {
+        // Close the modal here
+        uiDispatch({ type: "CLOSE_MODAL" });
+      }
+    };
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, [formBoxRef, uiDispatch]);
 
   useEffect(() => {
     const handleEnter = (e) => {
@@ -90,7 +104,7 @@ const CreateGroup = () => {
       }}
       className={`${styles.modal}`}
     >
-      <div className={`${styles.formBox}`}>
+      <div className={`${styles.formBox}`} ref={formBoxRef}>
         <h1 className={`${styles.title}`}>Create New group</h1>
         <form onSubmit={handleSubmit}>
           <div className={`${styles.formControl}`}>

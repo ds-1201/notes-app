@@ -14,14 +14,10 @@ export const useNotes = () => useContext(NotesContext);
 
 export const NotesProvider = ({ children }) => {
   const [groups, setGroups] = useState(
-    localStorage.getItem("groups")
-      ? JSON.parse(localStorage.getItem("groups"))
-      : SAMPLE_GROUPS
+    JSON.parse(localStorage.getItem("groups")) || SAMPLE_GROUPS
   );
   const [selectedGroup, setSelectedGroup] = useState(
-    localStorage.getItem("selectedGroup")
-      ? JSON.parse(localStorage?.getItem("selectedGroup"))
-      : null
+    JSON.parse(localStorage.getItem("selectedGroup"))
   );
   const [notes, setNotes] = useState([]);
 
